@@ -1,27 +1,24 @@
-import { buildConfig } from '../buildConfig';
-import { PostsCollection, postsSlug } from './collections/Posts';
-import { MenuGlobal } from './globals/Menu';
-import { devUser } from '../credentials';
-import { MediaCollection } from './collections/Media';
+import { buildConfig } from "../buildConfig";
+import { PostsCollection, postsSlug } from "./collections/Posts";
+import { MenuGlobal } from "./globals/Menu";
+import { devUser } from "../credentials";
+import { MediaCollection } from "./collections/Media";
+import { A } from "./collections/A";
 
 export default buildConfig({
   // ...extend config here
-  collections: [
-    PostsCollection,
-    MediaCollection,
-    // ...add more collections here
-  ],
+  collections: [PostsCollection, MediaCollection, A],
   globals: [
     MenuGlobal,
     // ...add more globals here
   ],
   graphQL: {
-    schemaOutputFile: './test/_community/schema.graphql',
+    schemaOutputFile: "./test/_community/schema.graphql",
   },
 
   onInit: async (payload) => {
     await payload.create({
-      collection: 'users',
+      collection: "users",
       data: {
         email: devUser.email,
         password: devUser.password,
@@ -31,7 +28,7 @@ export default buildConfig({
     await payload.create({
       collection: postsSlug,
       data: {
-        text: 'example post',
+        text: "example post",
       },
     });
   },
